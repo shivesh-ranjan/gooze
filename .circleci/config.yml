@@ -1,7 +1,7 @@
 version: 2.1
 
 jobs:
-  test-and-lint:
+  build-and-test:
     docker:
       - image: cimg/python:3.10.1
     steps:
@@ -10,13 +10,15 @@ jobs:
           name: install dependencies
           command: pip install -r requirements.txt
       - run:
-          name: lint
-          command: pylint my_media/ media_organizer/
+          name: run app
+          command: python3 manage.py runserver
       - run:
           name: run tests
-          command: python manage.py test
+          command: python3 manage.py test
+
 
 workflows:
   build-and-test-workflow:
     jobs:
-      - test-and-lint
+      - build-and-test
+
