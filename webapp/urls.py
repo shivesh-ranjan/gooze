@@ -5,4 +5,6 @@ urlpatterns = [
     path('', home),
     path('about/', about),
     path('contact/', contact),
+    path('blog/', blogHome),
+    path('blog/blogPost/<str:slug>', blogPost, name="blogPost"),
 ]
